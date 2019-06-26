@@ -1,0 +1,57 @@
+spring:
+  datasource:
+    #   数据源基本配置
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/store
+    type: com.alibaba.druid.pool.DruidDataSource
+    #   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    #   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+#日志级别
+logging:
+  level:
+    cn.myfreecloud.shop.repo.mapper: debug
+
+
+#    配置sql文件的位置(在启动容器的时候就执行sql语句自建表)
+#    schema:
+#      - classpath:sql/dept.sql
+#      - classpath:sql/employee.sql
+
+#    配置mybatis
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml     # mybatis配置文件所在路径
+  type-aliases-package: cn.myfreecloud.repo.entity          # 所有Entity别名类所在包
+  mapper-locations: classpath:cn/myfreecloud/shop/repo/dao/mapper/*.xml                    # mapper映射文件
+
+#tk的mapper配置
+mapper:
+  mappers:
+  - cn.myfreecloud.shop.basic.BasicMapper
+  not-empty: false
+  identity: MYSQL
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+#开启springBoot的debug模式
+debug: true
