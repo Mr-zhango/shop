@@ -20,7 +20,7 @@ import java.util.Optional;
  * @date: 2019/6/26 22:32
  * @description:
  */
-@Api(value = "商品分类PAI", tags = {"商品分类PAI"})
+@Api(tags = {"商品分类PAI"})
 @RestController
 @RequestMapping("/api/category")
 @Slf4j
@@ -33,7 +33,7 @@ public class CategoryController {
      *
      */
     @Timed
-    @ApiOperation(value = "整改联系人反馈---删除整改措施", notes = "curl -X GET \"http://127.0.0.1:8080/api/auditreportfixmeasure/delFixMeasure\" -H \"accept: application/json;charset=UTF-8\"")
+    @ApiOperation(value = "商品分类bar,查询所有的商品分类", notes = "curl -X POST \"http://127.0.0.1:8080/api/category/allCategory\" -H \"accept: application/json;charset=UTF-8\"")
     @ResponseStatus(HttpStatus.OK)
     @PostMapping(value = "/allCategory", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public BaseResponse allCategory() {

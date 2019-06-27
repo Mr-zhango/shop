@@ -2,9 +2,9 @@ spring:
   datasource:
     #   数据源基本配置
     username: root
-    password: 123456
+    password: 123
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/store
+    url: jdbc:mysql://localhost:3306/store?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
     type: com.alibaba.druid.pool.DruidDataSource
     #   数据源其他配置
     initialSize: 5
