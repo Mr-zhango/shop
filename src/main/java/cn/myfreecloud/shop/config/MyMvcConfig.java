@@ -64,4 +64,11 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
         return new MyLocaleResolver();
     }
 
+    /*//这里配置静态资源文件的路径导包都是默认的直接导入就可以
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/static/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/");
+        super.addResourceHandlers(registry);
+    }*/
+
 }

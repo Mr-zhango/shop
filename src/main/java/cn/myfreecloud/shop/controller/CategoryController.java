@@ -10,10 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -39,7 +36,7 @@ public class CategoryController {
     @Timed
     @ApiOperation(value = "商品分类bar,查询所有的商品分类", notes = "curl -X POST \"http://127.0.0.1:8080/api/category/allCategory\" -H \"accept: application/json;charset=UTF-8\"")
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/allCategory", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/allCategory", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public BaseResponse allCategory() {
         List<Category> list = categoryService.list();
         Optional<List<Category>> categories = Optional.of(list);
