@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// 演示例子，执行 main 方法控制台输入模块表名回车自动生成对应项目目录中
+/**
+ * 演示例子，执行 main 方法控制台输入模块表名回车自动生成对应项目目录中
+ */
 public class CodeGenerator {
 
     /**
@@ -60,8 +62,12 @@ public class CodeGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-//        pc.setModuleName(scanner("模块"));
-//        pc.setModuleName("shop");
+
+        /**
+         * pc.setModuleName(scanner("模块"));
+         * pc.setModuleName("shop");
+         */
+
         pc.setParent("cn.myfreecloud.shop");
         mpg.setPackageInfo(pc);
 
