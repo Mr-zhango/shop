@@ -1,18 +1,18 @@
 package cn.myfreecloud.shop;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-import tk.mybatis.spring.annotation.MapperScan;
 
 import java.util.Locale;
 
 @EnableSwagger2
 @SpringBootApplication
-@MapperScan(basePackages = "cn.myfreecloud.shop.repo.mapper")
+@MapperScan("cn.myfreecloud.shop.repo.mapper")
 public class ShopApplication {
 
     public static void main(String[] args) {

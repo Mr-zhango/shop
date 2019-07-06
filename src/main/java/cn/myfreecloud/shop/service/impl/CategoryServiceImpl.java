@@ -1,6 +1,5 @@
 package cn.myfreecloud.shop.service.impl;
 
-import cn.myfreecloud.shop.basic.BasicMapper;
 import cn.myfreecloud.shop.basic.service.BasicServiceImpl;
 import cn.myfreecloud.shop.repo.entity.Category;
 import cn.myfreecloud.shop.repo.mapper.CategoryMapper;
@@ -25,18 +24,9 @@ public class CategoryServiceImpl extends BasicServiceImpl<Category,String> imple
     private CategoryMapper categoryMapper;
 
     @Override
-    public BasicMapper<Category> getBasicMapper() {
-        return categoryMapper;
-    }
-
-    @Override
-    public int saveOrUpdate(Category entity) {
-        return 0;
-    }
-
-    @Override
     public Optional<List<Category>> queryAllCategory() {
-        List<Category> categories = categoryMapper.selectAll();
+        //查询所有的分类
+        List<Category> categories = categoryMapper.selectList(null);
         return Optional.of(categories);
     }
 }

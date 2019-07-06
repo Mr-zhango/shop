@@ -13,5 +13,9 @@ import java.util.Optional;
  */
 public interface CategoryService extends BasicService<Category,String> {
 
+    /**
+     * 查询所有的商品分类信息
+     * @return
+     */
    Optional<List<Category>> queryAllCategory();
 }

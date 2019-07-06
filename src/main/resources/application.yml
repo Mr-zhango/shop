@@ -4,7 +4,7 @@ spring:
     username: root
     password: 123
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/store?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/store?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Shanghai
     type: com.alibaba.druid.pool.DruidDataSource
     #   数据源其他配置
     initialSize: 5
@@ -41,17 +41,5 @@ mybatis:
   type-aliases-package: cn.myfreecloud.repo.entity          # 所有Entity别名类所在包
   mapper-locations: classpath:cn/myfreecloud/shop/repo/dao/mapper/*.xml                    # mapper映射文件
 
-#tk的mapper配置
-mapper:
-  mappers:
-  - cn.myfreecloud.shop.basic.BasicMapper
-  not-empty: false
-  identity: MYSQL
-
-pagehelper:
-  helperDialect: mysql
-  reasonable: true
-  supportMethodsArguments: true
-  params: count=countSql
 #开启springBoot的debug模式
 debug: true

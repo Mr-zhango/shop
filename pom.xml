@@ -40,14 +40,10 @@
 
     </properties>
     <dependencies>
+        <!--spring-boot-starter-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.3.3</version>
         </dependency>
         <!--引入thymeleaf模板引擎-->
         <dependency>
@@ -72,12 +68,12 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        <!--mysql的连接-->
+        <!--&lt;!&ndash;mysql的连接&ndash;&gt;
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-        </dependency>
+        </dependency>-->
         <!-- https://mvnrepository.com/artifact/javax.persistence/persistence-api -->
         <dependency>
             <groupId>javax.persistence</groupId>
@@ -107,13 +103,11 @@
             <version>3.5</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
-        <!--mysql的连接-->
+        <!--mysql的jdbc驱动包-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
         </dependency>
-
         <!--引入druid的数据源-->
         <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
         <dependency>
@@ -153,103 +147,56 @@
         </dependency>
         <!-- https://mvnrepository.com/artifact/tk.mybatis/mapper-spring-boot-starter -->
         <dependency>
-            <groupId>tk.mybatis</groupId>
-            <artifactId>mapper-spring-boot-starter</artifactId>
-            <version>2.1.5</version>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.1.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
+        <!--MybatisPlus代码生成-->
         <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.2.10</version>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.1.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>18.0</version>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.28</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+
         <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <version>1.9.3</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
 
 
-    </dependencies>
+    <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+    <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>18.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+    <dependency>
+        <groupId>commons-beanutils</groupId>
+        <artifactId>commons-beanutils</artifactId>
+        <version>1.9.3</version>
+    </dependency>
+</dependencies>
 
+<build>
+<plugins>
+    <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>repackage</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+</plugins>
+</build>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>pl.project13.maven</groupId>
-                <artifactId>git-commit-id-plugin</artifactId>
-                <configuration>
-                    <failOnNoGitDirectory>false</failOnNoGitDirectory>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.7</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.shared</groupId>
-                        <artifactId>maven-filtering</artifactId>
-                        <version>1.3</version>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <id>default-resources</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.7</version>
-                <configuration>
-                    <configurationFile>
-                        ${basedir}/src/main/resources/generator/generatorConfig-mysql.xml
-                    </configurationFile>
-                    <verbose>true</verbose>
-                    <overwrite>true</overwrite>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>8.0.13</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>tk.mybatis</groupId>
-                        <artifactId>mapper</artifactId>
-                        <version>4.0.4</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-        </plugins>
-    </build>
-
-</project>
+        </project>
