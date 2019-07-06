@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>jQuery表单input框选择器</title>
+    <meta charset="utf-8">
+
+    <script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"
+            th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+    <script type="text/javascript">
+        //专门用来选择和表单相关的元素,例如文本框,密码框,复选框下拉框,隐藏文本域,文件上传框多行文本框textarea等
+        //无论这些标记是否出现在表单中,都可以被选择
+
+        //注意只有带有input的可以被提交走,没有input的不会被提交走
+
+        //表单input选择器的通用语法:$("表单:input标记的type属性"),例如$("form :text")[注意:  :前面必须有空格]
+
+        //1.选择文本框,语法:$("表单 :text")
+
+        //2.选择密码框,语法:$("表单 :password")
+
+        //3.选择单选框,语法:$("表单 :radio")
+
+        //文件上传框,语法:$("表单 :file")
+        //页面加载完成就调用
+        $(function () {
+            //
+            $("#btn01").click(function () {
+                //选择文本输入框并输出用户输入的值
+                //alert('hello:'+$("#myForm :text").val()   + $("form :text").val())
+                //根据input框的name属性来取值
+                alert('输入的名字是:' + $("input[name='username']").val());
+            })
+
+            $("#btn02").click(function () {
+                //选择文本输入框并输出用户输入的值
+                alert('您输入的密码是:' + $("form :password").val())
+            })
+
+            $("#btn03").click(function () {
+                //选择单选框的value属性值
+                var $radio = $('form :radio:checked');
+                alert("被选中的是:" + $radio.val() + "--" + $radio.attr("name"))
+            })
+
+
+            $("#btn04").click(function () {
+                //在不同的浏览器中文件上传框的效果不同
+                var $file = $("form :file");
+                alert("你要上传的文件的名称是:" + $file.val())
+            })
+
+            $("#btn05").click(function () {
+                //选择复选框并输出用户选择的值
+                //var $checkboxs = $("form :checkbox:checked");         //这种方式使用在表单中
+                var $checkboxs = $("input[type='checkbox']:checked");   //这种出现在任何地方都可以呢
+                $checkboxs.each(function (index, domObj) {
+                    alert("您选择的是:" + domObj.value)
+                })
+            })
+
+            $("#btn06").click(function () {
+
+                $.ajax({
+                    //请求方式
+                    type: "GET",
+                    //请求地址
+                    url: "http://localhost:8080/curd/empJOSN/13",
+                    //请求参数
+                    //data: {"emp":"emp"},
+                    //成功之后的回调
+                    success: function (emp) {
+                            alert(emp.email + "123")
+                    },
+                    error: function () {
+                        alert(false)
+                    },
+
+                },"JSON");
+            })
+
+
+        })
+    </script>
+
+
+</head>
+<body>
+<!--定义表单-->
+<form id="myForm" action="">
+    用户名：
+    <input type="text" name="username"/><br><br>
+    密&nbsp;&nbsp;码：
+    <input type="password" name="password"/><br><br>
+    性&nbsp;&nbsp;别：
+    <input type="radio" name="gender" value="1" checked/>男
+    <input type="radio" name="gender" value="0"/>女<br><br>
+    照&nbsp;&nbsp;片：
+    <input type="file" name="photo"/><br><br>
+    兴&nbsp;&nbsp;趣：
+    <input type="checkbox" name="interest" value="music" checked/>音乐
+    <input type="checkbox" name="interest" value="food"/>美食
+    <input type="checkbox" name="interest" value="travel"/>旅游
+    <input type="checkbox" name="interest" value="shopping"/>购物
+    <br><br>
+    <input type="submit" value="提交"/>
+</form>
+<br>
+<br>
+<!--定义按钮-->
+<button id="btn01">选择文本输入框并输出用户输入的值</button>
+<button id="btn02">选择密码输入框输出用户输入的密码</button>
+<button id="btn03">选择单选框的value属性值</button>
+<button id="btn04">选择文件上传框并输出用户选择的文件</button>
+<button id="btn05">选择复选框并输出用户选择的值</button>
+
+<button id="btn06">AJAX异步请求后台数据</button>
+</body>
+</html>
