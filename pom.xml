@@ -20,12 +20,12 @@
         <!-- Java接口和实体类 -->
         <targetJavaProject>${basedir}/src/main/java</targetJavaProject>
         <!--mapper.java文件位置-->
-        <targetMapperPackage>cn.myfreecloud.shop.repo.mapper</targetMapperPackage>
+        <targetMapperPackage>cn.myfreecloud.shop.mapper</targetMapperPackage>
         <!--数据库entity位置-->
         <targetModelPackage>cn.myfreecloud.shop.repo.entity</targetModelPackage>
         <!-- XML生成路径 -->
         <targetResourcesProject>${basedir}/src/main/java</targetResourcesProject>
-        <targetXMLPackage>cn.myfreecloud.shop.repo.mapper</targetXMLPackage>
+        <targetXMLPackage>cn.myfreecloud.shop.mapper</targetXMLPackage>
         <persistence-api>1.0.2</persistence-api>
         <persistence.version>1.0</persistence.version>
         <!--jdk版本号-->

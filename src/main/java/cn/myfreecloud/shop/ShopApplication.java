@@ -12,7 +12,7 @@ import java.util.Locale;
 
 @EnableSwagger2
 @SpringBootApplication
-@MapperScan("cn.myfreecloud.shop.repo.mapper")
+@MapperScan("cn.myfreecloud.shop.mapper")
 public class ShopApplication {
 
     public static void main(String[] args) {

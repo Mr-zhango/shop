@@ -1,8 +1,8 @@
 package cn.myfreecloud.shop.controller;
 
 import cn.myfreecloud.shop.basic.BaseResponse;
-import cn.myfreecloud.shop.repo.entity.Category;
-import cn.myfreecloud.shop.service.CategoryService;
+import cn.myfreecloud.shop.entity.Category;
+import cn.myfreecloud.shop.service.ICategoryService;
 import com.codahale.metrics.annotation.Timed;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -30,7 +30,8 @@ import java.util.Optional;
 public class CategoryController {
 
     @Autowired
-    CategoryService categoryService;
+    ICategoryService categoryService;
+
     /**
      * 查询所有的商品分类信息
      *
@@ -40,7 +41,8 @@ public class CategoryController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/allCategory", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public BaseResponse allCategory() {
-        Optional<List<Category>> categories = categoryService.queryAllCategory();
+        List<Category> list = categoryService.list();
+        Optional<List<Category>> categories = Optional.of(list);
         return categories.map(BaseResponse::new).orElseGet(BaseResponse::new);
     }
 }
