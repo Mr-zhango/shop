@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -29,10 +30,21 @@ public class ProductController extends BaseController {
     IProductService productService;
 
     @Timed
-    @ApiOperation(value = "分页查询所有的商品", notes = "curl -X POST \"http://127.0.0.1:8080/api/all\" -H \"accept: application/json;charset=UTF-8\"")
+    @ApiOperation(value = "查询热门商品12个", notes = "curl -X POST \"http://127.0.0.1:8080/api/all\" -H \"accept: application/json;charset=UTF-8\"")
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping(value = "/allProduct", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/hotProduct", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public BaseResponse allProduct(
+            /*@RequestParam(value = "current", required = false, defaultValue = "1") Integer current,
+            @RequestParam(value = "total", required = false, defaultValue = "20") Integer size*/) {
+        Optional<List<Product>> products = productService.queryHotProduct();
+        return products.map(BaseResponse::new).orElseGet(BaseResponse::new);
+    }
+
+    @Timed
+    @ApiOperation(value = "查询最新商品12个", notes = "curl -X POST \"http://127.0.0.1:8080/api/all\" -H \"accept: application/json;charset=UTF-8\"")
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping(value = "/newProduct", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public BaseResponse newProduct(
             @RequestParam(value = "current", required = false, defaultValue = "1") Integer current,
             @RequestParam(value = "total", required = false, defaultValue = "20") Integer size) {
 

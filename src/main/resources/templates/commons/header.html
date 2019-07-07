@@ -31,7 +31,23 @@
                     });
                 }
             }, "json");
-        })
+        }),
+            $(function () {
+
+                var url = "/api/product/newProduct"
+                var params = "{}";
+                $.post(url, params, function (result) {
+                    //数据返回以后  遍历返回分类列表 拼装成li标签 添加到固定位置
+                    if (result != null) {
+                        //遍历
+                        result.data.forEach((item) => {
+                            //开始拼接li标签
+                            var li = "<li><a href='/product?md=findByPageWithCate&pageNumber=1&cid=" + item.cid + "'>" + item.cname + "</a></li>";
+                            $("#cateList").append(li);
+                        });
+                    }
+                }, "json");
+            })
     </script>
 
 </head>
@@ -180,66 +196,22 @@
             -->
             <div class="col-md-12">
                 <div class="row">
+                    <!-- <div class="col-md-2" style="text-align: center;">
+                         <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
+                         测试商品<br/>
+                         <span style="color: red;">￥299</span>
+                     </div>-->
+                    {{if list && list.length}}
+                    {{each list as value index}}
                     <div class="col-md-2" style="text-align: center;">
                         <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
                         测试商品<br/>
                         <span style="color: red;">￥299</span>
                     </div>
-                    <div class="col-md-2" style="text-align: center;">
-                        <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                        测试商品<br/>
-                        <span style="color: red;">￥299</span>
-                    </div>
-                    <div class="col-md-2" style="text-align: center;">
-                        <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                        测试商品<br/>
-                        <span style="color: red;">￥299</span>
-                    </div>
-                    <div class="col-md-2" style="text-align: center;">
-                        <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                        测试商品<br/>
-                        <span style="color: red;">￥299</span>
-                    </div>
-                    <div class="col-md-2" style="text-align: center;">
-                        <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                        测试商品<br/>
-                        <span style="color: red;">￥299</span>
-                    </div>
-                    <div class="col-md-2" style="text-align: center;">
-                        <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                        测试商品<br/>
-                        <span style="color: red;">￥299</span>
-                    </div>
-                    <div class="col-md-2" style="text-align: center;">
-                        <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                        测试商品<br/>
-                        <span style="color: red;">￥299</span>
-                    </div>
-                    <div class="col-md-2" style="text-align: center;">
-                        <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                        测试商品<br/>
-                        <span style="color: red;">￥299</span>
-                    </div>
-                    <div class="col-md-2" style="text-align: center;">
-                        <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                        测试商品<br/>
-                        <span style="color: red;">￥299</span>
-                    </div>
-                    <div class="col-md-2" style="text-align: center;">
-                        <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                        测试商品<br/>
-                        <span style="color: red;">￥299</span>
-                    </div>
-                    <div class="col-md-2" style="text-align: center;">
-                        <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                        测试商品<br/>
-                        <span style="color: red;">￥299</span>
-                    </div>
-                    <div class="col-md-2" style="text-align: center;">
-                        <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                        测试商品<br/>
-                        <span style="color: red;">￥299</span>
-                    </div>
+                    {{/each}}
+                    {{else}}
+                    <p>暂无数据</p>
+                    {{/if}}
                 </div>
             </div>
             <!--广告图-->
@@ -269,61 +241,6 @@
                 <div class="col-md-12">
                     <div class="row">
                         <!--一个测试商品-->
-                        <div class="col-md-2" style="text-align: center;">
-                            <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                            测试商品<br/>
-                            <span style="color: red;">￥299</span>
-                        </div>
-                        <div class="col-md-2" style="text-align: center;">
-                            <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                            测试商品<br/>
-                            <span style="color: red;">￥299</span>
-                        </div>
-                        <div class="col-md-2" style="text-align: center;">
-                            <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                            测试商品<br/>
-                            <span style="color: red;">￥299</span>
-                        </div>
-                        <div class="col-md-2" style="text-align: center;">
-                            <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                            测试商品<br/>
-                            <span style="color: red;">￥299</span>
-                        </div>
-                        <div class="col-md-2" style="text-align: center;">
-                            <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                            测试商品<br/>
-                            <span style="color: red;">￥299</span>
-                        </div>
-                        <div class="col-md-2" style="text-align: center;">
-                            <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                            测试商品<br/>
-                            <span style="color: red;">￥299</span>
-                        </div>
-                        <div class="col-md-2" style="text-align: center;">
-                            <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                            测试商品<br/>
-                            <span style="color: red;">￥299</span>
-                        </div>
-                        <div class="col-md-2" style="text-align: center;">
-                            <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                            测试商品<br/>
-                            <span style="color: red;">￥299</span>
-                        </div>
-                        <div class="col-md-2" style="text-align: center;">
-                            <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                            测试商品<br/>
-                            <span style="color: red;">￥299</span>
-                        </div>
-                        <div class="col-md-2" style="text-align: center;">
-                            <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                            测试商品<br/>
-                            <span style="color: red;">￥299</span>
-                        </div>
-                        <div class="col-md-2" style="text-align: center;">
-                            <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
-                            测试商品<br/>
-                            <span style="color: red;">￥299</span>
-                        </div>
                         <div class="col-md-2" style="text-align: center;">
                             <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
                             测试商品<br/>
