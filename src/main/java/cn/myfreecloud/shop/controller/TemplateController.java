@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 /**
  * @author: zhangyang
  * @date: 2019/6/30 13:23
- * @description:
+ * @description: 页面调试专用Controller
  */
 @Controller
 public class TemplateController {
