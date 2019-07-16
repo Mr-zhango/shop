@@ -39,7 +39,7 @@ logging:
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml     # mybatis配置文件所在路径
   type-aliases-package: cn.myfreecloud.repo.entity          # 所有Entity别名类所在包
-  mapper-locations: classpath:cn/myfreecloud/shop/repo/dao/mapper/*.xml                    # mapper映射文件
+  mapper-locations: classpath:mapper/*.xml                    # mapper映射文件
 
 #开启springBoot的debug模式
 debug: true
