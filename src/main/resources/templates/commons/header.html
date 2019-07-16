@@ -17,21 +17,23 @@
         //在页面加载成功以后 发起ajax 请求  要分类信息列表
         $(function () {
 
-            var url = "/api/category/allCategory"
-            var params = "{}";
+                var url = "/api/category/allCategory"
+                var params = "{}";
 
-            $.post(url, params, function (result) {
-                //数据返回以后  遍历返回分类列表 拼装成li标签 添加到固定位置
-                if (result != null) {
-                    //遍历
-                    result.data.forEach((item) => {
-                        //开始拼接li标签
-                        var li = "<li><a href='/product?md=findByPageWithCate&pageNumber=1&cid=" + item.cid + "'>" + item.cname + "</a></li>";
+                $.post(url, params, function (result) {
+                    //数据返回以后  遍历返回分类列表 拼装成li标签 添加到固定位置
+                    if (result != null) {
+                        //遍历
+                        result.data.forEach((item) = > {
+                            //开始拼接li标签
+                            var li = "<li><a href='/product?md=findByPageWithCate&pageNumber=1&cid=" + item.cid + "'>" + item.cname + "</a></li>";
                         $("#cateList").append(li);
-                    });
-                }
-            }, "json");
-        })
+                    })
+                        ;
+                    }
+                }, "json");
+            }
+        )
     </script>
 
 </head>
@@ -185,8 +187,8 @@
                          测试商品<br/>
                          <span style="color: red;">￥299</span>
                      </div>-->
-                    {{if list && list.length}}
-                    {{each list as value index}}
+                    {{if hotProduct && hotProduct.length}}
+                    {{each hotProduct as value index}}
                     <div class="col-md-2" style="text-align: center;">
                         <img src="/asserts/img/demo.png" width="130" height="130"/><br/>
                         测试商品<br/>
