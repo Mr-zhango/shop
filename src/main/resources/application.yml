@@ -36,10 +36,10 @@ logging:
 #      - classpath:sql/employee.sql
 
 #    配置mybatis
-mybatis:
-  config-location: classpath:mybatis/mybatis-config.xml     # mybatis配置文件所在路径
-  type-aliases-package: cn.myfreecloud.repo.entity          # 所有Entity别名类所在包
+mybatis-plus:
+  type-aliases-package: cn.myfreecloud.shop.entity          # 所有Entity别名类所在包
   mapper-locations: classpath:mapper/*.xml                    # mapper映射文件
-
+  configuration:
+    map-underscore-to-camel-case: true
 #开启springBoot的debug模式
 debug: true
