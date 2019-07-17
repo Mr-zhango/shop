@@ -36,7 +36,7 @@ public class ProductController extends BaseController {
     public ModelAndView queryProductHome() {
 
         //视图和模型对象,初始化的时候就设置页面的地址
-        ModelAndView modelAndView = new ModelAndView("commons/header");
+        ModelAndView modelAndView = new ModelAndView("product/index");
         //数据
         Optional<List<Product>> hotProductList = productService.queryHotProduct();
 

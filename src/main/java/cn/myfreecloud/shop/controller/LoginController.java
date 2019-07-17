@@ -49,4 +49,33 @@ public class LoginController {
         }
 
     }
+
+    /**
+     * 管理员登录方法
+     * @param username
+     * @param password
+     * @param map
+     * @param session
+     * @return
+     */
+    @PostMapping(value = "/user/admin")
+    public String adminLogin(@RequestParam("username") String username,@RequestParam("password") String password,Map<String,Object> map, HttpSession session){
+
+        map.put("username",username);
+        map.put("password",password);
+
+        List<User> userList  = userMapper.selectByMap(map);
+
+        if(userList.size() == 1){
+            //登陆成功，防止表单重复提交，可以重定向到主页main.html的中转页面,在映射到主页
+            session.setAttribute("loginUser",username);
+            return "redirect:/main.html";
+        }else {
+            //登陆失败
+            map.put("msg","用户名密码错误");
+            return  "login";
+        }
+
+    }
+
 }

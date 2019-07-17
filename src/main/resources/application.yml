@@ -43,3 +43,6 @@ mybatis-plus:
     map-underscore-to-camel-case: true
 #开启springBoot的debug模式
 debug: true
+
+server:
+  port: 8090
