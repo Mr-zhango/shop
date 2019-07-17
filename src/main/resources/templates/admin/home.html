@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>自由云商城后台管理系统</title>
+    <!--easyUI使用的js--开始-->
+    <link rel="stylesheet" type="text/css" href="admin/css/easyui.css">
+    <link rel="stylesheet" type="text/css" href="admin/css/icon.css">
+    <script type="text/javascript" src="admin/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="admin/js/jquery.easyui.min.js"></script>
+    <!--easyUI使用的js--结束-->
+
+    <script type="text/javascript">
+        //在页面加载成功以后 发起ajax 请求  要分类信息列表
+        $(function () {
+
+            var url = "/api/category/allCategory"
+            var params = "{}";
+
+            $.post(url, params, function (result) {
+                //数据返回以后  遍历返回分类列表 拼装成li标签 添加到固定位置
+                if (result != null) {
+                    //遍历
+                    result.data.forEach((item) => {
+                        //开始拼接li标签
+                        var li = "<li><a href='/product?md=findByPageWithCate&pageNumber=1&cid=" + item.cid + "'>" + item.cname + "</a></li>";
+                        $("#cateList").append(li);
+                    })
+                }
+            }, "json");
+        })
+    </script>
+
+
+</head>
+
+<div id="cc" class="easyui-layout" style="width:600px;height:400px;" data-options="fit:true">
+
+    <div data-options="region:'west',title:'菜单管理'" style="width:180px;">
+
+        <div id="aa" class="easyui-accordion" data-options="fit:true">
+            <div title="分类管理" data-options="iconCls:'icon-search'" style="overflow:auto;padding:10px;">
+                <a href="javascript:;" onclick="addTab(this)" data-url="/api/category/allCategory" >分类列表</a>
+            </div>
+            <div title="商品管理" data-options="iconCls:'icon-add'" style="padding:10px;">
+                <a href="javascript:;" onclick="addTab(this)" data-url="/api/category/allCategory">商品列表</a>
+            </div>
+        </div>
+    </div>
+    <div data-options="region:'center'" style="background:#eee;">
+        <div id="tt" class="easyui-tabs" data-options="fit:true">
+            <div title="欢迎页" style="">
+                欢迎使用自由云网络后台管理系统
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -16,8 +16,8 @@ public class TemplateController {
      * 页面调试url
      * @return
      */
-    @GetMapping("/test/header")
+    @GetMapping("/html")
     public String toEditPage(){
-        return "commons/header";
+        return "admin/home";
     }
 }
