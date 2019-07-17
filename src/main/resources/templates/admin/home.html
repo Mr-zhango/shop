@@ -13,28 +13,28 @@
     <script type="text/javascript" src="admin/js/jquery.easyui.min.js"></script>
     <!--easyUI使用的js--结束-->
 
+    <!--js 代码-->
     <script type="text/javascript">
-        //在页面加载成功以后 发起ajax 请求  要分类信息列表
-        $(function () {
+        function addTab(obj) {
+            //obj代表啥?
+            var text = $(obj).text();
+            //获取属性
+            var url = $(obj).attr("data-url");
+            //判断有无
+            if ($("#tt").tabs("exists", text)) {
+                $("#tt").tabs("select", text);
+            } else {
+                //新添选项卡
+                $("#tt").tabs("add", {
+                    title: text,
+                    selected: true,
+                    closable: true,
+                    content: '<iframe src="' + url + '" style="width:100%;height:100%;border:0px;"></iframe>'
+                })
+            }
 
-            var url = "/api/category/allCategory"
-            var params = "{}";
-
-            $.post(url, params, function (result) {
-                //数据返回以后  遍历返回分类列表 拼装成li标签 添加到固定位置
-                if (result != null) {
-                    //遍历
-                    result.data.forEach((item) => {
-                        //开始拼接li标签
-                        var li = "<li><a href='/product?md=findByPageWithCate&pageNumber=1&cid=" + item.cid + "'>" + item.cname + "</a></li>";
-                        $("#cateList").append(li);
-                    })
-                }
-            }, "json");
-        })
+        }
     </script>
-
-
 </head>
 
 <div id="cc" class="easyui-layout" style="width:600px;height:400px;" data-options="fit:true">
@@ -43,7 +43,7 @@
 
         <div id="aa" class="easyui-accordion" data-options="fit:true">
             <div title="分类管理" data-options="iconCls:'icon-search'" style="overflow:auto;padding:10px;">
-                <a href="javascript:;" onclick="addTab(this)" data-url="/api/category/allCategory" >分类列表</a>
+                <a href="javascript:;" onclick="addTab(this)" data-url="/toCategoryPage" >分类列表</a>
             </div>
             <div title="商品管理" data-options="iconCls:'icon-add'" style="padding:10px;">
                 <a href="javascript:;" onclick="addTab(this)" data-url="/api/category/allCategory">商品列表</a>
