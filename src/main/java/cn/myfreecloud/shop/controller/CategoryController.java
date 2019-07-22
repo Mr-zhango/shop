@@ -10,7 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,8 +23,7 @@ import java.util.Optional;
  * @description:
  */
 @Api(tags = {"商品分类PAI"})
-@RestController
-@RequestMapping("/api/category")
+@Controller
 @Slf4j
 public class CategoryController {
 
@@ -36,10 +37,16 @@ public class CategoryController {
     @Timed
     @ApiOperation(value = "商品分类bar,查询所有的商品分类", notes = "curl -X POST \"http://127.0.0.1:8080/api/category/allCategory\" -H \"accept: application/json;charset=UTF-8\"")
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping(value = "/allCategory", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public BaseResponse allCategory() {
+    @RequestMapping(value = "/allCategory", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ModelAndView queryCategorytHome() {
+        //视图和模型对象,初始化的时候就设置页面的地址
+        ModelAndView modelAndView = new ModelAndView("admin/category");
+
         List<Category> list = categoryService.list();
+
         Optional<List<Category>> categories = Optional.of(list);
-        return categories.map(BaseResponse::new).orElseGet(BaseResponse::new);
+
+        modelAndView.addObject("allCategory",categories.get());
+        return modelAndView;
     }
 }
