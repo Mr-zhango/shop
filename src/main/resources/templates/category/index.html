@@ -47,13 +47,27 @@
                 }]
             });
 
-
+            var data={};
+            data.name="打多少分";
+            var list=[];
+            list.push("1");
+            list.push("2");
+            data.list=list;
+            alert(111)
+            $.ajax({url:"/jquery/test1.txt",data:{res:JSON.stringify(data)},async:false});
         })
 
+
+
+
         function saveCategory() {
+
+
+
             //提交表单数据
             $('#saveForm').form('submit', {
                 url: "${ctx}/category?md=add",
+                data:{res:JSON.stringify(data)},
                 success: function (data) {
                     //关闭对话框
                     $("#dd").dialog("close");

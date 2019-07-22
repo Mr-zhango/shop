@@ -629,6 +629,24 @@
 <script>
 
     $(document).ready(function () {
+
+
+
+        //编辑分类
+        function addFunction() {
+            var data={};
+            data.name="zhangsan";
+            data.age="26";
+            var list=[];
+            list.push("1");
+            list.push("2");
+            data.list=list;
+            $.ajax({url:"/www.baidu.com",type:"POST",data:{res:JSON.stringify(data)},async:false});
+        }
+
+        //addFunction()
+
+
         WinMove();
         setTimeout(function () {
             $.gritter.add({
