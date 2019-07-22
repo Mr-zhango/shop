@@ -18,6 +18,26 @@ public class TemplateController {
      */
     @GetMapping("/html")
     public String toEditPage(){
-        return "admin/home";
+        return "product/index";
+    }
+
+    /**
+     *
+     * 页面调试url
+     * @return
+     */
+    @GetMapping("/admin")
+    public String toAdminPage(){
+        return "admin/index";
+    }
+
+    /**
+     *
+     * 分类页面
+     * @return
+     */
+    @GetMapping("/categoryPage")
+    public String toCategoryPage(){
+        return "admin/category";
     }
 }
