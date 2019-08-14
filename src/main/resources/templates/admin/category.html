@@ -563,7 +563,7 @@
                                                 <td>[[${category.cname}]]</td>
                                                 <td class="text-navy"><i class="fa fa-level-up"></i> 40%</td>
                                                 <td class="text-navy">
-                                                    <button class="btn btn-info " type="button"><i class="fa fa-paste"></i>
+                                                    <button class="btn btn-info " button type="button" onclick='huixianById(${category.cid})' data-toggle="modal" data-target="#myModal5"><i class="fa fa-paste"></i>
                                                         编辑
                                                     </button>
                                                 </td>
@@ -589,7 +589,42 @@
 
     </div>
 </div>
+<div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
 
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">窗口标题</h4>
+                <small class="font-bold" />这里可以显示副标题。
+            </div>
+            <div class="modal-body">
+                <table width="100%" id="addCategory">
+                    <tr align="center">
+                        <td>
+                            分类名称:
+                        </td>
+                        <td>
+                            <input type="text" name="cname"><br>
+                        </td>
+                    </tr>
+                    <tr align="center">
+                        <td>
+                            分类排序:
+                        </td>
+                        <td>
+                            <input type="text" name="rank"><br>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="updateCategory()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Mainly scripts -->
 <script src="js/jquery-2.1.1.min.js"></script>
 <script src="js/bootstrap.min.js?v=3.4.0"></script>
@@ -714,6 +749,28 @@
             tooltip: false
         });
     });
+
+
+    //根据id查询分类信息并且回显
+    function huixianById(cid) {
+
+        var url="${ctx}/category"
+        var params="md=list";
+        $.post(url,params,function(data){
+            //数据返回以后  遍历返回分类列表 拼装成li标签 添加到固定位置
+            if(data!=null){
+                //遍历
+                $.each(data,function(index,ele){
+                    //开始拼接li标签
+                    //<li><a href="product_list.htm">手机数码</a></li>
+                    var li="<li><a href='${ctx}/product?md=findByPageWithCate&pageNumber=1&cid="+ele.cid+"'>"+ele.cname+"</a></li>";
+                    $("#addCategory").append(li);
+                });
+            }
+        },"json");
+    }
+
+
 </script>
 
 
