@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.myfreecloud.shop.repo.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="cn.myfreecloud.shop.repo.entity.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="alive_flag" jdbcType="INTEGER" property="aliveFlag" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    u_id, user_name, alive_flag, name, email, telephone, birthday, state
+  </sql>
+</mapper>
