@@ -1,5 +1,6 @@
 package cn.myfreecloud.shop.component;
 
+import cn.myfreecloud.shop.repo.entity.User;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,6 +23,11 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
+        User userLoginTest = new User();
+
+        request.getSession().setAttribute("loginUser",userLoginTest);
+
         Object user = request.getSession().getAttribute("loginUser");
         if(user == null){
             //未登陆，返回登陆页面
