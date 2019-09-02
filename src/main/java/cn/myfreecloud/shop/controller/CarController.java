@@ -2,6 +2,8 @@ package cn.myfreecloud.shop.controller;
 
 
 import cn.myfreecloud.shop.basic.BaseResponse;
+import cn.myfreecloud.shop.basic.BasicPage;
+import cn.myfreecloud.shop.basic.MyPage;
 import cn.myfreecloud.shop.service.CarService;
 import cn.myfreecloud.shop.transfer.dto.QueryUnionAllDtoUserCar;
 import cn.myfreecloud.shop.transfer.dto.QueryUnionDtoUserCar;
@@ -27,10 +29,7 @@ public class CarController {
 
     @Autowired
     CarService carService;
-    /**
-     * 查询所有的商品分类信息
-     *
-     */
+
     @Timed
     @ApiOperation(value = "最常用的collection查询方式", notes = "curl -X POST \"http://127.0.0.1:8080/testCollection\" -H \"accept: application/json;charset=UTF-8\"")
     @ResponseStatus(HttpStatus.OK)
@@ -65,5 +64,19 @@ public class CarController {
     public Object testAllCollectionDto(@RequestBody QueryReq req) {
         Optional<List<ResultMapTest>> cars = carService.testAllCollectionDto();
         return cars.map(BaseResponse::new).orElseGet(BaseResponse::new);
+    }
+
+    /**
+     * 解决pageHelper分页查询的分页错误问题
+     * @param basicPage
+     * @return
+     */
+    @Timed
+    @ApiOperation(value = "询结果封装成list(dto)返回的查询方式", notes = "curl -X POST \"http://127.0.0.1:8080/testAllCollectionDto\" -H \"accept: application/json;charset=UTF-8\"")
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping(value = "/testAllCollectionDto", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public  MyPage<QueryUnionDtoUserCar> fixAllCollectionDto(@RequestBody BasicPage basicPage) {
+        MyPage<QueryUnionDtoUserCar> cars = carService.fixAllCollectionDto(basicPage);
+        return cars;
     }
 }

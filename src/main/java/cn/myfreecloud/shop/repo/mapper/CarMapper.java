@@ -17,4 +17,6 @@ public interface CarMapper extends BasicMapper<Car> {
     List<ResultMapTest> testAllCollectionCollection();
 
     List<ResultMapTest> testAllCollectionDto();
+
+    List<QueryUnionDtoUserCar> fixAllCollectionDto();
 }

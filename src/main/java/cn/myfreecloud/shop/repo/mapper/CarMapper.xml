@@ -23,18 +23,20 @@
         </collection>
     </resultMap>
     <resultMap id="BaseResultMap2Collection" type="cn.myfreecloud.shop.transfer.dto.ResultMapTest">
-            <collection property="queryUnionDtoUserCarList" ofType="cn.myfreecloud.shop.transfer.dto.QueryUnionDtoUserCar" javaType="List">
+        <collection property="queryUnionDtoUserCarList" ofType="cn.myfreecloud.shop.transfer.dto.QueryUnionDtoUserCar"
+                    javaType="List">
             <result column="u_id" jdbcType="VARCHAR" property="uId"/>
             <result column="user_name" jdbcType="VARCHAR" property="userName"/>
             <result column="name" jdbcType="VARCHAR" property="name"/>
-                <collection property="carList" ofType="cn.myfreecloud.shop.repo.entity.Car" javaType="List">
-                    <result column="car_id" jdbcType="INTEGER" property="carId"/>
-                    <result column="car_name" jdbcType="VARCHAR" property="carName"/>
-                </collection>
+            <collection property="carList" ofType="cn.myfreecloud.shop.repo.entity.Car" javaType="List">
+                <result column="car_id" jdbcType="INTEGER" property="carId"/>
+                <result column="car_name" jdbcType="VARCHAR" property="carName"/>
+            </collection>
         </collection>
     </resultMap>
     <resultMap id="QueryUnion2CollectionDtoUserCar" type="cn.myfreecloud.shop.transfer.dto.ResultMapTest">
-        <collection property="queryUnionAllDtoUserCarList" ofType="cn.myfreecloud.shop.transfer.dto.QueryUnionAllDtoUserCar" javaType="List">
+        <collection property="queryUnionAllDtoUserCarList"
+                    ofType="cn.myfreecloud.shop.transfer.dto.QueryUnionAllDtoUserCar" javaType="List">
             <result column="u_id" jdbcType="VARCHAR" property="uId"/>
             <result column="user_name" jdbcType="VARCHAR" property="userName"/>
             <result column="name" jdbcType="VARCHAR" property="name"/>
@@ -100,6 +102,22 @@
     </select>
     <select id="testAllCollectionDto" resultMap="QueryUnion2CollectionDtoUserCar">
         select
+            user.u_id,
+            user.user_name,
+            user.name,
+
+            car.car_id,
+            car.car_name
+
+            FROM
+              t_user user
+        LEFT JOIN t_car car on user.u_id = car.u_id
+            AND user.alive_flag =car.alive_flag = '1'
+            AND user.alive_flag = '1'
+            AND car.alive_flag = '1'
+    </select>
+    <select id="fixAllCollectionDto" resultMap="BaseResultMapCar">
+         select
             user.u_id,
             user.user_name,
             user.name,

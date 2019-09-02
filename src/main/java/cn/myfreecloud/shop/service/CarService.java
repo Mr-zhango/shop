@@ -1,5 +1,7 @@
 package cn.myfreecloud.shop.service;
 
+import cn.myfreecloud.shop.basic.BasicPage;
+import cn.myfreecloud.shop.basic.MyPage;
 import cn.myfreecloud.shop.basic.service.BasicService;
 import cn.myfreecloud.shop.repo.entity.Car;
 import cn.myfreecloud.shop.transfer.dto.QueryUnionAllDtoUserCar;
@@ -25,5 +27,7 @@ public interface CarService extends BasicService<Car,String> {
    Optional<List<ResultMapTest>> testAllCollectionCollection();
 
    Optional<List<ResultMapTest>> testAllCollectionDto();
+
+   MyPage<QueryUnionDtoUserCar> fixAllCollectionDto(BasicPage basicPage);
 }
 

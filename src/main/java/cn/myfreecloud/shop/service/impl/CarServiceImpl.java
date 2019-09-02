@@ -1,6 +1,8 @@
 package cn.myfreecloud.shop.service.impl;
 
 import cn.myfreecloud.shop.basic.BasicMapper;
+import cn.myfreecloud.shop.basic.BasicPage;
+import cn.myfreecloud.shop.basic.MyPage;
 import cn.myfreecloud.shop.basic.service.BasicServiceImpl;
 import cn.myfreecloud.shop.repo.entity.Car;
 import cn.myfreecloud.shop.repo.mapper.CarMapper;
@@ -69,4 +71,32 @@ public class CarServiceImpl extends BasicServiceImpl<Car,String> implements CarS
         List<ResultMapTest> list = carMapper.testAllCollectionDto();
         return Optional.ofNullable(list);
     }
+
+    @Override
+    public MyPage<QueryUnionDtoUserCar> fixAllCollectionDto(BasicPage basicPage) {
+
+
+        List<QueryUnionDtoUserCar> result = carMapper.fixAllCollectionDto();
+
+        MyPage paging = MyPage.pagination(result.size(),basicPage.getPageSize(),basicPage.getPageIndex());
+
+        int fromIndex = paging.getQueryIndex();
+        //
+        int toIndex = 0;
+
+        if (fromIndex + paging.getPageSize() >= result.size()){
+            toIndex = result.size();
+        }else {
+            toIndex = fromIndex +  paging.getPageSize();
+        }
+        //如果
+        if (fromIndex > toIndex){
+            return paging;
+        }
+
+        paging.setPageList(result.subList(fromIndex,toIndex));
+        return paging;
+    }
+
+
 }
