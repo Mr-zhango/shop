@@ -40,7 +40,7 @@ public class CategoryController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/allCategory", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public BaseResponse allCategory() {
-        Optional<List<Category>> categories = categoryService.queryAllCategory();
-        return categories.map(BaseResponse::new).orElseGet(BaseResponse::new);
+        List<Category> categories = categoryService.query(null);
+        return new BaseResponse(HttpStatus.OK.toString(),"成功",categories);
     }
 }
