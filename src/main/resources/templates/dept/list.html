@@ -10,10 +10,10 @@
 
     <title>Dashboard Template for Bootstrap</title>
     <!-- Bootstrap core CSS -->
-    <link href="asserts/css/bootstrap.min.css" rel="stylesheet">
+    <link href="asserts/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="asserts/css/dashboard.css" rel="stylesheet">
+    <link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
     <style type="text/css">
         /* Chart.js */
 
@@ -82,56 +82,25 @@
         </form>
     </div>
 </div>
-</body>
+
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"></script>
-<script type="text/javascript" src="asserts/js/popper.min.js"></script>
-<script type="text/javascript" src="asserts/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.1/jquery.js}"></script>
+<script type="text/javascript" src="asserts/js/popper.min.js" th:src="@{/webjars/popper.js/1.11.1/dist/popper.js}"></script>
+<script type="text/javascript" src="asserts/js/bootstrap.min.js" th:src="@{/webjars/bootstrap/4.0.0/js/bootstrap.js}"></script>
 
 <!-- Icons -->
-<script type="text/javascript" src="asserts/js/feather.min.js"></script>
+<script type="text/javascript" src="asserts/js/feather.min.js" th:src="@{/asserts/js/feather.min.js}"></script>
 <script>
-    //在页面加载成功以后 发起ajax 请求  要分类信息列表
-    $(function(){$.ajax(alert(11111));})
-
-
-    $(function () {
-        var url = "/users"
-        var params = "{}";
-        $.ajax({
-            url: url,                //发送请求的地址
-            type: "POST",                     //请求方式GET/POST，默认GET
-            dataType: "json",                       //预期服务器返回的数据类型
-            global: true,                       //是否触发全局Ajax事件，默认为true（触发）
-            data: { "": "" },             //向服务器发送的数据
-            beforeSend: function (XMLHttpRequest) {
-                alert("正在加载中");
-                //$("#div1").show();
-
-            },    ///发送请求前调用，可以放一些"正在加载"之类额话
-            complete: function (XMLHttpRequest, textStatus) {
-
-            },      //请求完成时（成功或失败）
-            success: function (data, textStatus)      //请求成功后的回调函数
-            {
-                $("#div1").hide();
-                $.each(data, function (i, item)    //i：   data中对象成员或数组的索引值
-                    //item：  data对应的变量或内容
-                {
-                    alert(item.Name);
-
-                });
-            },
-            error: function (XMLHttpRequest, txtStatus, ErroeThrown) { }     //失败后回调
-        })
-    }),
-
-        $(".deleteBtn").click(function(){
-            //删除当前员工的
-            $("#deleteDeptForm").attr("action",$(this).attr("del_uri")).submit();
-            return false;
-        });
+    feather.replace()
 </script>
+<script>
+    $(".deleteBtn").click(function(){
+        //删除当前员工的
+        $("#deleteDeptForm").attr("action",$(this).attr("del_uri")).submit();
+        return false;
+    });
+</script>
+</body>
 </html>

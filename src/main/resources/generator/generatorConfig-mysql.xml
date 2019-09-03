@@ -29,7 +29,7 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost/store?useUnicode=true&amp;characterEncoding=UTF8&amp;nullCatalogMeansCurrent=true&amp;serverTimezone=GMT%2B8"
+                        connectionURL="jdbc:mysql://localhost/springboot_mybatis?useUnicode=true&amp;characterEncoding=UTF8&amp;nullCatalogMeansCurrent=true&amp;serverTimezone=GMT%2B8"
                         userId="root"
                         password="123456">
         </jdbcConnection>
@@ -44,10 +44,10 @@
         <sqlMapGenerator targetPackage="${targetXMLPackage}" targetProject="${targetResourcesProject}"/>
         <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}" type="XMLMAPPER"/>
 
-        <table tableName="t_category" domainObjectName="Category" enableCountByExample="false"
+        <table tableName="t_department" domainObjectName="Department" enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false">
-            <generatedKey column="cid" sqlStatement="JDBC" identity="true"/>
+            <generatedKey column="DEPARTMENT_ID" sqlStatement="JDBC" identity="true"/>
             <columnRenamingRule searchString="^f_" replaceString=""/>
         </table>
     </context>
