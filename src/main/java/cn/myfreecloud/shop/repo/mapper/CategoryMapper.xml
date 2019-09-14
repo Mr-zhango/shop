@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.myfreecloud.shop.repo.mapper.CategoryMapper">
+  <resultMap id="BaseResultMap" type="cn.myfreecloud.shop.repo.entity.Category">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="category_id" jdbcType="VARCHAR" property="categoryId" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="row_order" jdbcType="INTEGER" property="rowOrder" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="alive_flag" jdbcType="INTEGER" property="aliveFlag" />
+    <result column="create_user_account" jdbcType="VARCHAR" property="createUserAccount" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="delete_user_name" jdbcType="VARCHAR" property="deleteUserName" />
+    <result column="delete_user_account" jdbcType="VARCHAR" property="deleteUserAccount" />
+    <result column="delete_date" jdbcType="TIMESTAMP" property="deleteDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    category_id, category_name, row_order, remark, alive_flag, create_user_account, create_user_name, 
+    create_date, delete_user_name, delete_user_account, delete_date
+  </sql>
+</mapper>

@@ -39,4 +39,13 @@ public class LoginController {
         }
 
     }
+
+    @GetMapping(value = "/logout")
+    public String login(Map<String,Object> map, HttpSession session){
+        session.removeAttribute("loginUser");
+        map.put("msg", "请登录");
+        return  "login";
+    }
+
+
 }

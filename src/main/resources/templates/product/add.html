@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -43,6 +42,7 @@
 </head>
 
 <body>
+<!--引用抽取好的公共页面 topbar-->
 <!--模板名：会使用thymeleaf的前后缀配置规则进行解析-->
 <!--<div th:replace="~{dashboard::topbar}">-->
 <div th:replace="commons/bar::topbar">
@@ -50,17 +50,27 @@
 <div class="container-fluid">
 	<div class="row">
 		<!--使用选择器的方式,引入侧边栏-->
-		<div th:replace="commons/bar::#sidebar(activeUri='depts')"></div>
+		<div th:replace="commons/bar::#sidebar(activeUri='products')"></div>
 		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-			<form th:action="@{/dept}" method="post">
+			<form th:action="@{/product}" method="post">
 				<!--添加的请求方式参数--><!--th:if="${emp!=null}" 判断是修改的时候才起作用-->
-				<input type="hidden" name="_method" value="put" th:if="${dept!=null}"/>
-				<input type="hidden" name="departmentId" th:if="${dept!=null}" th:value="${dept.departmentId}">
+				<input type="hidden" name="_method" value="put" th:if="${product!=null}"/>
+				<input type="hidden" name="productGuid" th:if="${product!=null}" th:value="${product.productGuid}">
 				<div class="form-group">
-					<label>部门名称</label>
-					<input name="departmentName" type="text" class="form-control" placeholder="请填写部门名字" th:value="${dept != null} ? ${dept.departmentName}">
+					<label>商品名称</label>
+					<input name="productName" type="text" class="form-control" placeholder="请填写商品名字" th:value="${product != null} ? ${product.productName}">
 				</div>
-				<button type="submit" class="btn btn-primary" th:text="${dept != null} ?'修改' : '添加'">添加</button>
+				<div class="form-group">
+					<label>所属分类</label>
+					<select class="form-control"  name="departmentId" style="width: 525px;height: 40px;" >
+						<option name="departmentId"
+								th:selected="${product != null} ? ${category.categoryId == product.productGuid}"
+								th:value="${category.categoryId}" th:each="category:${categoryList}"
+								th:text="${category.categoryName}">后台有值的话我就没有了
+						</option>
+					</select>
+				</div>
+				<button type="submit" class="btn btn-primary" th:text="${product != null} ?'修改' : '添加'">添加</button>
 			</form>
 		</main>
 	</div>
@@ -69,6 +79,7 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+
 <script type="text/javascript" th:src="'/asserts/js/jquery-3.2.1.slim.min.js'"></script>
 <script type="text/javascript" th:src="'/asserts/js/popper.min.js'"></script>
 <script type="text/javascript" th:src="'/asserts/js/bootstrap.min.js'"></script>
@@ -79,8 +90,6 @@
 	feather.replace()
 </script>
 
-<!-- Graphs -->
-<script type="text/javascript" src="asserts/js/Chart.min.js"></script>
 <script>
 
 </script>

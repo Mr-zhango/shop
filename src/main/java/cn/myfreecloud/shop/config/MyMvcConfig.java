@@ -15,17 +15,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class MyMvcConfig extends WebMvcConfigurerAdapter {
 
-
-    /**
-     * 使用SpringMVC自己扩展视图映射的写法
-     * @param registry
-     */
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        // super.addViewControllers(registry);   浏览器发送 /atguigu 请求来到 success
-        registry.addViewController("/atguigu").setViewName("success");
-    }
-
     //所有的WebMvcConfigurerAdapter组件都会一起起作用
     //将组件注册在容器
     @Bean
@@ -48,7 +37,7 @@ public class MyMvcConfig extends WebMvcConfigurerAdapter {
 
                 //没有登录的时候就拦截跳转到登录页面
                 registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
-                        .excludePathPatterns("/index.html","/","/user/login");
+                        .excludePathPatterns("/index.html","/uploadFile","/user/login");
             }
         };
         return adapter;
