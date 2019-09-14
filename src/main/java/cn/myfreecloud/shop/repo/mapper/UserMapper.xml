@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.myfreecloud.shop.repo.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="cn.myfreecloud.shop.repo.entity.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="user_guid" jdbcType="VARCHAR" property="userGuid" />
+    <result column="user_weixin_id" jdbcType="VARCHAR" property="userWeixinId" />
+    <result column="user_weixin_openid" jdbcType="VARCHAR" property="userWeixinOpenid" />
+    <result column="user_weixin_sessionkey" jdbcType="VARCHAR" property="userWeixinSessionkey" />
+    <result column="user_weixin_address" jdbcType="VARCHAR" property="userWeixinAddress" />
+    <result column="user_weixin_avatar" jdbcType="VARCHAR" property="userWeixinAvatar" />
+    <result column="user_weixin_nickname" jdbcType="VARCHAR" property="userWeixinNickname" />
+    <result column="user_gender" jdbcType="VARCHAR" property="userGender" />
+    <result column="row_order" jdbcType="INTEGER" property="rowOrder" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="alive_flag" jdbcType="INTEGER" property="aliveFlag" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="delete_user_name" jdbcType="VARCHAR" property="deleteUserName" />
+    <result column="delete_date" jdbcType="TIMESTAMP" property="deleteDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    user_guid, user_weixin_id, user_weixin_openid, user_weixin_sessionkey, user_weixin_address, 
+    user_weixin_avatar, user_weixin_nickname, user_gender, row_order, remark, alive_flag, 
+    create_user_name, create_date, delete_user_name, delete_date
+  </sql>
+</mapper>

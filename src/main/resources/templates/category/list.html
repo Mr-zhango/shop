@@ -50,27 +50,30 @@
 <div class="container-fluid">
     <div class="row">
         <!--引入侧边栏-->
-        <div th:replace="commons/bar::#sidebar(activeUri='depts')"></div>
+        <div th:replace="commons/bar::#sidebar(activeUri='categorys')"></div>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-            <h2><a class="btn btn-sm btn-success" href="emp" th:href="@{/dept}">部门添加</a></h2>
+            <h2><a class="btn btn-sm btn-success" href="emp" th:href="@{/category}">分类添加</a></h2>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
-                        <th>部门id</th>
-                        <th>部门名称</th>
+                        <th>分类id</th>
+                        <th>分类名称</th>
+                        <th>排序</th>
+                        <th>备注</th>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="dept:${depts}">
-                        <td th:text="${dept.departmentId}"></td>
-                        <!--<td>[[${dept.departmentName}]]</td>-->
-                        <td th:text="${dept.departmentName}"></td>
+                    <tr th:each="category:${categoryList}">
+                        <td th:text="${category.categoryId}"></td>
+                        <td th:text="${category.categoryName}"></td>
+                        <td th:text="${category.rowOrder}"></td>
+                        <td th:text="${category.remark}"></td>
                         <td>
-                            <a class="btn btn-sm btn-primary" th:href="@{/dept/}+${dept.departmentId}">编辑</a>
-                            <button th:attr="del_uri=@{/dept/}+${dept.departmentId}" class="btn btn-sm btn-danger deleteBtn">删除</button>
+                            <a class="btn btn-sm btn-primary" th:href="@{/category/}+${category.categoryId}">编辑</a>
+                            <button th:attr="del_uri=@{/category/}+${category.categoryId}" class="btn btn-sm btn-danger deleteBtn">删除</button>
                         </td>
                     </tr>
                     </tbody>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Dashboard Template for Bootstrap</title>
+	<!-- Bootstrap core CSS -->
+	<link th:href="'/asserts/css/bootstrap.min.css'" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link th:href="'/asserts/css/dashboard.css'" rel="stylesheet">
+</head>
+
+<body>
+<div th:replace="commons/bar::topbar">
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<!--使用选择器的方式,引入侧边栏-->
+		<div th:replace="commons/bar::#sidebar(activeUri='users')"></div>
+		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+			<form th:action="@{/user}" method="post">
+				<!--添加的请求方式参数--><!--th:if="${emp!=null}" 判断是修改的时候才起作用-->
+				<input type="hidden" name="_method" value="put" th:if="${user!=null}"/>
+				<input type="hidden" name="departmentId" th:if="${user!=null}" th:value="${user.userGuid}">
+				<div class="form-group">
+					<label>用户昵称</label>
+					<input name="departmentName" type="text" class="form-control" placeholder="请填写用户名字" th:value="${user != null} ? ${user.userWeixinNickname}">
+				</div>
+				<button type="submit" class="btn btn-primary" th:text="${user != null} ?'修改' : '添加'">添加</button>
+			</form>
+		</main>
+	</div>
+</div>
+
+<script type="text/javascript" th:src="'/asserts/js/jquery-3.2.1.slim.min.js'"></script>
+<script type="text/javascript" th:src="'/asserts/js/popper.min.js'"></script>
+<script type="text/javascript" th:src="'/asserts/js/bootstrap.min.js'"></script>
+
+<!-- Icons -->
+<script type="text/javascript" th:src="'/asserts/js/feather.min.js'"></script>
+<script>
+	feather.replace()
+</script>
+
+<script>
+
+</script>
+
+</body>
+
+</html>
