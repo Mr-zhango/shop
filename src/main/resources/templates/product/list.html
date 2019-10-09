@@ -60,6 +60,8 @@
                     <tr>
                         <th>商品id</th>
                         <th>商品名称</th>
+                        <th>商品图片</th>
+                        <th>商品图片url</th>
                         <th>商品所属分类</th>
                         <th>操作</th>
                     </tr>
@@ -68,6 +70,8 @@
                     <tr th:each="product:${productList}">
                         <td th:text="${product.productGuid}"></td>
                         <td th:text="${product.productName}"></td>
+                        <td><img th:src="${product.productImage}" /></td>
+                        <td th:text="${product.productImage}"></td>
                         <td th:text="${product.categoryId}"></td>
                         <td>
                             <a class="btn btn-sm btn-primary" th:href="@{/product/}+${product.productGuid}">编辑</a>

@@ -1,15 +1,12 @@
 package cn.myfreecloud.shop.controller.category;
 
 import cn.myfreecloud.shop.repo.entity.Category;
-import cn.myfreecloud.shop.repo.entity.Department;
 import cn.myfreecloud.shop.repo.mapper.CategoryMapper;
-import cn.myfreecloud.shop.repo.mapper.DepartmentMapper;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,11 +45,11 @@ public class CategoryController {
         return "redirect:/categorys";
     }
 
-    //删除部门
+    //删除
     @DeleteMapping("/category/{id}")
     public String deleteDept(@PathVariable("id") String id){
         categoryMapper.deleteByPrimaryKey(id);
-        return "redirect:/depts";
+        return "redirect:/categorys";
     }
 
     //来到修改页面，查出当前部门

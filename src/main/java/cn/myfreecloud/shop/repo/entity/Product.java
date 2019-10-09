@@ -19,6 +19,12 @@ public class Product implements Serializable {
     private String productGuid;
 
     /**
+     * 图片链接
+     */
+    @Column(name = "product_image")
+    private String productImage;
+
+    /**
      * 分类表主键
      */
     @Column(name = "category_id")
